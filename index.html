@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!-- make the other buttons reset in color after another button is pressed-->
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            document.addEventListener("DOMContentLoaded", function() {
+                // if correct answer is clicked
+                let correct = document.querySelector(".correct");
+                correct.addEventListener("click", function() {
+                    for(let i = 0; i < wrong.length; i++) {
+                    wrong[i].style.backgroundColor = '#d9edff';
+                    correct.style.backgroundColor = "green";
+                    document.querySelector("#question1").innerHTML = 'Correct!'
+                    }
+                })
+
+                let wrong = document.querySelectorAll(".wrong");
+                for(let i = 0; i < wrong.length; i++) {
+                    wrong[i].addEventListener('click', function() {
+                        correct.style.backgroundColor = '#d9edff';
+                        for(let j = 0; j < wrong.length; j++) {
+                            wrong[j].style.backgroundColor = '#d9edff';
+                        }
+                        wrong[i].style.backgroundColor = 'red';
+                        document.querySelector('#question1').innerHTML = 'Wrong';
+                    });
+                }
+                //free response
+                let input = document.querySelector('input');
+                input.addEventListener("keypress", function(event) {
+                document.querySelector('#check').addEventListener("click", function() {
+                    if (input.value.toLowerCase() == "ff0000") {
+                        input.style.backgroundColor = 'green';
+                        document.querySelector('#question2').innerHTML = "Correct!"
+                    } else {
+                        input.style.backgroundColor = 'red';
+                        document.querySelector('#question2').innerHTML = "Wrong";
+                }
+                    })
+                    });
+            });
+
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>Which year was the popular programming language C published?</h3>
+                <button class="wrong">1980</button>
+                <button class="wrong">2005</button>
+                <button class="correct">1972</button>
+                <button class="wrong">1967</button>
+                <p id="question1"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>What is the hexadecimal combination to display the color red?</h3>
+                ##: <input type="text">
+                <button id="check">Check answer</button>
+                <p id="question2"></p>
+            </div>
+        </div>
+    </body>
+</html>
